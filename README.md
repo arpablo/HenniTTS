@@ -470,18 +470,7 @@ Prepare difficult numbers and abbreviations as spoken text before synthesis:
 
 In both languages, the reading of `1978/79` depends on whether it means a season, academic year or time range.
 
-**`skills/prepare-tts-text` does this work.** It lays down the wording of a Markdown note, carries the reading rules and dictionaries for German and English, and checks the finished text against the note for places that are still unspoken and for words that went missing. Neither launcher invokes it, so run it first and hand the resulting `.txt` to `tts-qwen` or `tts-phonon`:
-
-```bash
-python3 skills/prepare-tts-text/prepare.py wording NOTE.md
-# rewrite NOTE.txt into a reading version, then
-python3 skills/prepare-tts-text/prepare.py check NOTE.md NOTE.txt
-tts-phonon --lang de NOTE.txt
-```
-
-The skill needs no installation to be used this way. `Install.md` describes
-how to copy it into a directory your harness searches, so it is offered
-without being pointed at. That is optional and nothing here depends on it.
+**`skills/prepare-tts-text` does this work.** Neither launcher invokes it, so run it first and hand the resulting `.txt` to `tts-qwen` or `tts-phonon`. The next section describes it.
 
 Neither launcher loads a dictionary of its own. VoiceStudio profiles and dictionaries are not imported. Convert PDF documents to plain UTF-8 text first.
 
@@ -496,6 +485,72 @@ tts-phonon prepared-english.txt
 tts-qwen --lang de lesefassung-deutsch.txt
 tts-phonon --lang de lesefassung-deutsch.txt
 ```
+
+## Prepare a note with the skill
+
+`skills/prepare-tts-text` turns a Markdown note into the plain text file a launcher should read. A speech model reads characters, not meaning. It takes the full stop in `50.000` for the end of a sentence, reads `1907/08` as a fraction or a date, and finds no article or case in `Wilhelm II.`. Listening afterwards does not repair that, because the model says exactly what is written. So the text is prepared first, and the launcher reads the result.
+
+### What the skill contains
+
+| File | Purpose |
+| --- | --- |
+| `SKILL.md` | The contract an agent reads before preparing a note |
+| `prepare.py` | Two commands: `wording` lays down the text, `check` compares a reading version with the note |
+| `reading-de.md`, `reading-en.md` | The reading rules per language |
+| `dictionary-de.json`, `dictionary-en.json` | Cases already decided, such as `z. B.` → `zum Beispiel` or a confirmed currency |
+
+The reading rules cover numbers and identifiers, money, years, dates and spans, Roman numerals, units, signs and formulas, abbreviations, and tables and code blocks. The skill needs nothing but Python 3 and the files in its directory.
+
+### How it is applied
+
+It works in three steps, and the middle one is done by hand:
+
+```bash
+# 1. Lay down the wording: writes NOTE.txt beside the note
+python3 skills/prepare-tts-text/prepare.py wording NOTE.md
+
+# 2. Rewrite NOTE.txt in place into a reading version,
+#    following reading-de.md or reading-en.md
+
+# 3. Check the reading version against the note
+python3 skills/prepare-tts-text/prepare.py check NOTE.md NOTE.txt
+
+# Then speak it
+tts-phonon --lang de NOTE.txt
+```
+
+**Step 1** removes what a listener cannot hear: frontmatter, comments, embeds, footnotes, bold and italic markers, inline code, quote marks and rules. A link becomes its text, a heading a sentence of its own, and each list item its own sentence. The command then lists what is still to be decided: digits, Roman numerals, signs and units, and any table or code block.
+
+**Step 2** is never automated. Whether `1.234` is a quantity or a file reference, whether `1907/08` is a span or a financial year, and whether `Wilhelm II.` stands in the dative needs context, and a replacement rule cannot read it. The reading version writes out what has one reading: `50.000 Menschen` becomes `fünfzigtausend Menschen`, `unter Wilhelm II.` becomes `unter Wilhelm dem Zweiten`, `5 m²` becomes `fünf Quadratmeter`. Identifiers keep their shape, so `Version 1.2.0` becomes `Version eins Punkt zwei Punkt null` and is never read as a quantity. Tables and code blocks become sentences. Nothing is added, dropped, rounded or explained. Where the text does not decide, the open questions are collected and asked in one go, and the answer goes into the dictionary so it is not asked again.
+
+**Step 3** reports words of the note missing from the reading version, a table or code block still in it, and digits, Roman numerals and signs still standing. Two or more missing words in one place is an error, and the reading version is not ready. One missing word, or anything still standing, is a hint to look at, because a prescribed rewriting such as `23:05 Uhr` → `dreiundzwanzig Uhr fünf` also moves a word. Measured against seven faults injected into a reading version, the check found five. A clean run shows that the coarse losses are absent, not that the text says the same thing, so read what was written.
+
+The probe texts in `samples` exercise every rule. `samples/probe-de.md` and `samples/probe-en.md` are the place to try the skill.
+
+### With an agent in Codex or Claude Code
+
+The skill is written for an agent. The agent runs both commands and does the rewriting in step 2, and you answer the questions the text does not decide. A request in plain words is enough:
+
+```text
+Prepare samples/probe-de.md for speech and read it with Phonon.
+```
+
+**Without installation**, inside this repository. `AGENTS.md` describes the skill and tells an agent to use it from `skills/`. Codex loads `AGENTS.md` at the start of a session, and Claude Code loaded it in this repository as well. If an agent does not pick the skill up, point at it:
+
+```text
+Follow skills/prepare-tts-text/SKILL.md and prepare NOTE.md for tts-phonon.
+```
+
+**Installed**, the skill is offered in every session, also outside this repository, and the agent chooses it by its description when a request fits. You can also call it by name:
+
+| Harness | Local, one project | Global, every project | Call by name |
+| --- | --- | --- | --- |
+| Claude Code | `.claude/skills/prepare-tts-text/` | `~/.claude/skills/prepare-tts-text/` | `/prepare-tts-text` |
+| Codex | `.agents/skills/prepare-tts-text/` | `~/.agents/skills/prepare-tts-text/` | `$prepare-tts-text`, or pick it from `/skills` |
+
+Installing is optional and nothing here depends on it. Ask your agent to install the skill, and it follows `Install.md`: it asks whether locally or globally, copies the directory and records which version it copied. An installed copy is a copy. Change the files under `skills/` and install again, never the copy. A local install is ignored by git.
+
+The skill's output is the same in every harness: a `.txt` beside the note that `tts-qwen` or `tts-phonon` reads.
 
 ## Use the environment directly
 

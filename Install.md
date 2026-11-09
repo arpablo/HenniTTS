@@ -24,6 +24,17 @@ repository.
 | Local, this project only | `.claude/skills/prepare-tts-text/` |
 | Global, every project | `~/.claude/skills/prepare-tts-text/` |
 
+### Codex
+
+| Choice | Directory |
+| --- | --- |
+| Local, this project only | `.agents/skills/prepare-tts-text/` |
+| Global, every project | `~/.agents/skills/prepare-tts-text/` |
+
+These are the repository and user locations in the Codex documentation on
+skills. Codex finds a new skill without a restart. If it does not appear,
+restart Codex.
+
 ### Another harness
 
 Use the skill directory that harness documents, and follow its own layout for
@@ -75,8 +86,8 @@ cp skills/prepare-tts-text/* "$target/"
 ## 4. Say what happened
 
 Name the directory, the version, and that an installed copy is not the source.
-A local install is already in `.gitignore` under `.claude/skills/`. Ask before
-committing one.
+A local install is already in `.gitignore`, under `.claude/skills/` for
+Claude Code and `.agents/skills/` for Codex. Ask before committing one.
 
 ## Removing it
 
