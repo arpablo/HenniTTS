@@ -57,6 +57,9 @@ HenniTTS/
 │       └── voice.json
 ├── skills/
 │   └── prepare-tts-text/  Turns a Markdown note into the text to be spoken
+├── tests/                 Behaviour tests for tts-qwen
+├── AGENTS.md              For an agent working in this repository
+├── Install.md             How to install the skill into a harness, on request
 └── README.md
 ```
 
@@ -475,6 +478,10 @@ python3 skills/prepare-tts-text/prepare.py wording NOTE.md
 python3 skills/prepare-tts-text/prepare.py check NOTE.md NOTE.txt
 tts-phonon --lang de NOTE.txt
 ```
+
+The skill needs no installation to be used this way. `Install.md` describes
+how to copy it into a directory your harness searches, so it is offered
+without being pointed at. That is optional and nothing here depends on it.
 
 Neither launcher loads a dictionary of its own. VoiceStudio profiles and dictionaries are not imported. Convert PDF documents to plain UTF-8 text first.
 
