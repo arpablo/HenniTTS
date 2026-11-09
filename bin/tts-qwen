@@ -1,0 +1,39 @@
+#!/bin/bash
+set -euo pipefail
+
+tts_script="${BASH_SOURCE[0]}"
+while [ -h "$tts_script" ]; do
+  tts_script_dir="$(cd -P "$(dirname "$tts_script")" && pwd)"
+  tts_script="$(readlink "$tts_script")"
+  case "$tts_script" in /*) ;; *) tts_script="$tts_script_dir/$tts_script" ;; esac
+done
+tts_root="$(cd -P "$(dirname "$tts_script")/.." && pwd)"
+tts_env="${MLX_TTS_ENV:-$tts_root/mlx-env}"
+tts_python="$tts_env/bin/python"
+
+if [ "${1:-}" = --setup ]; then
+  [ "$#" -eq 1 ] || { printf '%s\n' 'Use --setup on its own.' >&2; exit 1; }
+  exec 1>&2
+  [ "$(uname -s)" = Darwin ] && [ "$(uname -m)" = arm64 ] || {
+    printf '%s\n' 'Run natively on an Apple Silicon Mac (without Rosetta).' >&2; exit 1;
+  }
+  tts_uv="$(command -v uv || true)"
+  if [ -z "$tts_uv" ] && [ -x "$HOME/.local/bin/uv" ]; then tts_uv="$HOME/.local/bin/uv"; fi
+  [ -n "$tts_uv" ] || { printf '%s\n' 'Install uv, then run tts-qwen --setup again.' >&2; exit 1; }
+  if [ ! -x "$tts_python" ]; then "$tts_uv" venv --python 3.11 "$tts_env"; fi
+  "$tts_uv" pip install --python "$tts_python" --upgrade mlx-audio
+  printf '%s\n' 'MLX-Audio is ready. English: tts-qwen --text "Good morning." German: tts-qwen --lang de --text "Guten Morgen."'
+  exit 0
+fi
+
+if [ ! -x "$tts_python" ]; then
+  if [ "${1:-}" = --help ] || [ "${1:-}" = -h ]; then
+    printf '%s\n' 'tts-qwen: local speech with saved English and German voices.' \
+      'English is the default. Set up the runtime with: tts-qwen --setup' \
+      'Run tts-qwen --help after setup for all options.'
+    exit 0
+  fi
+  printf '%s\n' 'MLX-Audio is not set up. First run: tts-qwen --setup' >&2
+  exit 1
+fi
+exec "$tts_python" "$tts_root/bin/tts-qwen.py" "$@"

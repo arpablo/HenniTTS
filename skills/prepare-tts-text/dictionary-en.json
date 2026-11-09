@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "language": "en",
+  "entries": [
+    {
+      "term": "1907/08",
+      "spoken": "nineteen oh seven oh eight",
+      "when": "Named as a financial year, a season or a winter.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "e.g.",
+      "spoken": "for example",
+      "when": "Common abbreviation in running text.",
+      "case_sensitive": false,
+      "enabled": true
+    },
+    {
+      "term": "i.e.",
+      "spoken": "that is",
+      "when": "Common abbreviation in running text.",
+      "case_sensitive": false,
+      "enabled": true
+    },
+    {
+      "term": "No.",
+      "spoken": "number",
+      "when": "Before a number or an identifier.",
+      "case_sensitive": false,
+      "enabled": true
+    },
+    {
+      "term": "Henry VIII",
+      "spoken": "Henry the Eighth",
+      "when": "A regnal name takes an ordinal with its article.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "m²",
+      "spoken": "square metres",
+      "when": "An area after a number, singular after one.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "m³",
+      "spoken": "cubic metres",
+      "when": "A volume after a number, singular after one.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "km/h",
+      "spoken": "kilometres per hour",
+      "when": "A speed. In a unit the slash is `per`.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "WACB",
+      "spoken": "West African Currency Board",
+      "when": "Only where the text gives the meaning, then the long form, not the abbreviation.",
+      "case_sensitive": true,
+      "enabled": true
+    }
+  ]
+}

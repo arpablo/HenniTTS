@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "language": "de",
+  "entries": [
+    {
+      "term": "1907/08",
+      "spoken": "neunzehnhundertsieben null acht",
+      "when": "Als Rechnungsjahr, Saison oder Winter bezeichnet.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "Council Bill",
+      "spoken": "Council Bill",
+      "when": "Englischer Fachbegriff, bleibt unübersetzt und unverändert.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "z. B.",
+      "spoken": "zum Beispiel",
+      "when": "Gebräuchliche Abkürzung im Fließtext.",
+      "case_sensitive": false,
+      "enabled": true
+    },
+    {
+      "term": "bzw.",
+      "spoken": "beziehungsweise",
+      "when": "Gebräuchliche Abkürzung im Fließtext.",
+      "case_sensitive": false,
+      "enabled": true
+    },
+    {
+      "term": "Nr.",
+      "spoken": "Nummer",
+      "when": "Vor einer Zahl oder einer Kennung.",
+      "case_sensitive": false,
+      "enabled": true
+    },
+    {
+      "term": "Wilhelm II.",
+      "spoken": "Wilhelm der Zweite",
+      "when": "Herrschername im Nominativ. In anderen Fällen Artikel und Endung aus dem Satz: dem Zweiten, des Zweiten.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "m²",
+      "spoken": "Quadratmeter",
+      "when": "Flächenangabe nach einer Zahl.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "m³",
+      "spoken": "Kubikmeter",
+      "when": "Volumenangabe nach einer Zahl.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "km/h",
+      "spoken": "Kilometer pro Stunde",
+      "when": "Geschwindigkeit. Der Schrägstrich heißt in einer Einheit `pro`.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "WACB",
+      "spoken": "West African Currency Board",
+      "when": "Nur wo der Text die Bedeutung nennt, dann die Langform statt des Kürzels.",
+      "case_sensitive": true,
+      "enabled": true
+    }
+  ]
+}

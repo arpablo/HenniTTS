@@ -1,0 +1,14 @@
+mlx-env/
+__pycache__/
+*.pyc
+.DS_Store
+voices/.creating-*/
+
+# Generated recordings in samples. The sample texts belong in the repository,
+# the audio made from them does not: it is large and it is reproducible.
+samples/*.wav
+samples/*.m4a
+samples/*.mp3
+samples/*.aac
+samples/*.flac
+samples/*.ogg

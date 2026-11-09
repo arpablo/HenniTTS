@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "name": "voice-en",
+  "language": "en",
+  "source_locale": "en-GB",
+  "description": "A warm male narrator speaking clear British English at a calm natural pace with restrained expression.",
+  "source_model": "mlx-community/Qwen3-TTS-12Hz-1.7B-VoiceDesign-4bit",
+  "created_at": "2026-11-09T10:49:09.961377+00:00",
+  "duration_seconds": 7.76,
+  "sample_rate": 24000,
+  "channels": 1
+}
