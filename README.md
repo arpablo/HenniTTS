@@ -43,7 +43,8 @@ HenniTTS/
 │   ├── tts-qwen           Shell launcher
 │   ├── tts-qwen.py        Text input and voice profiles
 │   ├── tts-qwen-engine.py Bounded synthesis and tempo adjustment
-│   └── tts-phonon         Phonon voices through Ollama, standard library only
+│   ├── tts-phonon         Shell launcher
+│   └── tts-phonon.py      Phonon voices through Ollama, standard library only
 ├── mlx-env/               tts-qwen runtime, created by --setup
 ├── voices/                tts-qwen voice profiles
 │   ├── voice-en/

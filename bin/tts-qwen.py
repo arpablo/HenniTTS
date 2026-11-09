@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """CLI and saved voice profiles for the tts-qwen launcher (standard library only)."""
 
 import argparse

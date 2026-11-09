@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Bounded Qwen synthesis. Load the model once, generate short chunks, then join."""
 
 import argparse
