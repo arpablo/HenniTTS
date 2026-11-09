@@ -12,3 +12,7 @@ samples/*.mp3
 samples/*.aac
 samples/*.flac
 samples/*.ogg
+
+# A skill installed into this project for a harness to load. The source lives
+# in skills/, so an installed copy is local and not part of the repository.
+.claude/skills/
