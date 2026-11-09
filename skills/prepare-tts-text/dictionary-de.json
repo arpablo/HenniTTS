@@ -71,6 +71,48 @@
       "when": "Nur wo der Text die Bedeutung nennt, dann die Langform statt des Kürzels.",
       "case_sensitive": true,
       "enabled": true
+    },
+    {
+      "term": "$",
+      "spoken": "US-Dollar",
+      "when": "Currency in the contract in samples/probe-de.md. Confirmed by the user. This does not apply to an unqualified dollar sign elsewhere.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "£",
+      "spoken": "Pfund Sterling",
+      "when": "Currency in the contract and table in samples/probe-de.md. Confirmed by the user.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "04/03/2026",
+      "spoken": "dritter April zweitausendsechsundzwanzig",
+      "when": "Date in the English reprint in samples/probe-de.md. Confirmed by the user. Inflect for its sentence.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "1978/79",
+      "spoken": "neunzehnhundertachtundsiebzig und neunzehnhundertneunundsiebzig",
+      "when": "Two separate years for the decisions in samples/probe-de.md. Confirmed by the user.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "nm",
+      "spoken": "Nanometer",
+      "when": "Wire measurement in samples/probe-de.md. Confirmed by the user. Do not apply to nautical miles.",
+      "case_sensitive": true,
+      "enabled": true
+    },
+    {
+      "term": "1911/12",
+      "spoken": "neunzehnhundertelf zwölf",
+      "when": "Financial year in the prose and table in samples/probe-de.md. The table reading was confirmed by the user.",
+      "case_sensitive": true,
+      "enabled": true
     }
   ]
 }
