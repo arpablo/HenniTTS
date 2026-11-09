@@ -569,3 +569,7 @@ python3 -m unittest discover -s tests -v
 The tests use a simulated synthesis backend. They cover default and named voices, English and German routing, profile creation, failure cleanup, playback selection, clean WAV output, bounded long-text splitting, tempo routing and rejection of generation-limit exhaustion.
 
 They cover `tts-qwen` only. `tts-phonon` has no tests yet. What it does was checked by hand against a running Ollama server.
+
+## License
+
+The code, the skill and the probe texts in this repository are released under the MIT License, see `LICENSE`. The speech models are not part of the repository and keep their own licenses: Qwen3-TTS is released under Apache 2.0, and the 40M Phonon models under CC BY-NC 4.0, which limits recordings made with them to noncommercial use.
